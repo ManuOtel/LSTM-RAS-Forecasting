@@ -128,3 +128,4 @@ for name in unique_names:
 # liter/kg --- fish kW/kg fish
 # oxigen shows the quality of food
 # pH level change can show the performance of the biological system
+# CO2 -> TAN, no need for NITRIT and NITRATE

@@ -185,7 +185,7 @@ if __name__ == '__main__':
     # training_batch_data = (data, unique_locations, batches)
     training_batch_data = batch_data(data, unique_locations, batches, missing_data=True)
     print(training_batch_data.head())
-    # plot_all_data(training_batch_data, unique_locations)
+    plot_all_data(training_batch_data, unique_locations)
     training_batch_data = normalize_data(training_batch_data, save=False)
     save_data_by_name(training_batch_data, unique_locations)
     training_batch_data = one_hot_encode(training_batch_data, drop_date=True, ph_drop=True)
