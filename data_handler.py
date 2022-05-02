@@ -1,5 +1,6 @@
 from sklearn.preprocessing import OneHotEncoder
 from sklearn import preprocessing
+from scipy.stats import zscore
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
@@ -72,7 +73,7 @@ def plot_single_data(plot_data, figure_name, plot_batch):
     plt.subplots(constrained_layout=True)
 
     plt.subplot(811).set_title('Density', loc='right', fontsize=10)
-    plt.plot(plot_data["density"])
+    plt.plot(range(len(plot_data.index)), plot_data["density"])
     plt.title(figure_name)
 
     if plot_batch:
@@ -82,25 +83,32 @@ def plot_single_data(plot_data, figure_name, plot_batch):
     # print(batch_index)
 
     plt.subplot(812).set_title('Feed', loc='right', fontsize=10)
-    plt.plot(plot_data["feed"])
+    plt.plot(range(len(plot_data.index)), plot_data["feed"], 'r')
+    plt.scatter(range(len(plot_data.index)), plot_data["feed"], c='r')
 
     plt.subplot(813).set_title('Salt', loc='right', fontsize=10)
-    plt.plot(plot_data["salt"])
+    plt.plot(range(len(plot_data.index)), plot_data["salt"])
+    plt.scatter(range(len(plot_data.index)), plot_data["salt"])
 
     plt.subplot(814).set_title('Temp', loc='right', fontsize=10)
-    plt.plot(plot_data["avg_temp"])
+    plt.plot(range(len(plot_data.index)), plot_data["avg_temp"])
+    plt.scatter(range(len(plot_data.index)), plot_data["avg_temp"])
 
     plt.subplot(815).set_title('Ammonium', loc='right', fontsize=10)
-    plt.plot(plot_data["ammonium"])
+    plt.plot(range(len(plot_data.index)), plot_data["ammonium"])
+    plt.scatter(range(len(plot_data.index)), plot_data["ammonium"])
 
     plt.subplot(816).set_title('Nitrit', loc='right', fontsize=10)
-    plt.plot(plot_data["nitrit"])
+    plt.plot(range(len(plot_data.index)), plot_data["nitrit"])
+    plt.scatter(range(len(plot_data.index)), plot_data["nitrit"])
 
     plt.subplot(817).set_title('Nitrate', loc='right', fontsize=10)
-    plt.plot(plot_data["nitrate"])
+    plt.plot(range(len(plot_data.index)), plot_data["nitrate"])
+    plt.scatter(range(len(plot_data.index)), plot_data["nitrate"])
 
     plt.subplot(818).set_title('CO2', loc='right', fontsize=10)
-    plt.plot(plot_data["co2"])
+    plt.plot(range(len(plot_data.index)), plot_data["co2"])
+    plt.scatter(range(len(plot_data.index)), plot_data["co2"])
 
     # out = plt.get_figure()
     # print(out)

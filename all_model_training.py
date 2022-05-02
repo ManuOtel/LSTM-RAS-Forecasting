@@ -8,6 +8,7 @@ import gc
 from sequence_data import SequenceDataset
 from another_one import ShallowRegressionLSTM, LSTMModel
 import tqdm
+import pickle
 import matplotlib.pyplot as plt
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -115,9 +116,12 @@ for name in unique_names:
         y_pred = y_pred.flatten()
         y_hat.append(y_pred.cpu().detach().numpy())
         y_target.append(y.cpu().detach().numpy())
-
-    plt.plot(y_hat, label='Prediction')
-    plt.plot(y_target, label='Real')
+    food_scaler_name = os.getcwd()+'/data/scaler_feed.pkl'
+    scaler = pickle.load(open(food_scaler_name, 'rb'))
+    y_hat_n = scaler.inverse_transform(y_hat)
+    y_target_n = scaler.inverse_transform(y_target)
+    plt.plot(y_hat_n, label='Prediction')
+    plt.plot(y_target_n, label='Real')
     plt.legend()
     plt.title(name)
     plt.show()
